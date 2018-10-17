@@ -1,31 +1,24 @@
+import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { StartComponent } from './start/start.component';
 import { ProductOverviewComponent } from './product-overview/product-overview.component';
-
-const appRoutes: Routes = [
-  {
-    path: 'start',
-    component: StartComponent,
-  },
-  {
-    path: 'products',
-    component: ProductOverviewComponent,
-  },
-];
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { NavComponent } from './nav/nav.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StartComponent,
-    ProductOverviewComponent
+    ProductOverviewComponent,
+    PageNotFoundComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes),
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
