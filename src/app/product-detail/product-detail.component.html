@@ -1,0 +1,19 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col">
+      <div class="card" *ngIf="currentProduct">
+        <div class="card-header">
+          {{ currentProduct.name }}
+        </div>
+        <div class="card-body">
+          {{ currentProduct.price | currency:'EUR' }}
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-danger" (click)="backToOverview()">Zurück</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

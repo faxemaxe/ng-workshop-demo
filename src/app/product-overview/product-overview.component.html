@@ -2,16 +2,29 @@
   <div class="row">
     <div class="col">
 
-      <h2>Products</h2>
+      <h2>Products: Suche nach: {{ searchValue }}</h2>
+
+      <input type="text" [(ngModel)]="searchValue" class="form-control" placeholder="Suche">
 
       <table class="table">
         <tbody>
-          <tr *ngFor="let product of products">
+          <tr *ngFor="let product of getFilteredProducts()">
             <td>{{ product.name }}</td>
             <td>{{ product.price | currency:'EUR' }}</td>
+            <td>
+              <button
+                class="btn btn-outline-primary"
+                [routerLink]="['/products', product.id, 'detail']">
+                öffnen
+              </button>
+            </td>
           </tr>
         </tbody>
       </table>
+
+      <pre>
+        {{ getFilteredProducts() | json }}
+      </pre>
 
     </div>
   </div>

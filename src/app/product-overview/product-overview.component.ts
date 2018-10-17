@@ -9,6 +9,7 @@ import { ProductService } from '../product/product.service';
 export class ProductOverviewComponent implements OnInit {
 
   public products: any[] = [];
+  public searchValue: string = '';
 
   constructor(
     private productService: ProductService,
@@ -17,5 +18,19 @@ export class ProductOverviewComponent implements OnInit {
   ngOnInit() {
     this.products = this.productService.getAll();
   }
+
+  getFilteredProducts() {
+    return this.products.filter((product) => {
+      const lowerSearch = this.searchValue.toLowerCase();
+      const lowerName = product.name.toLowerCase();
+      return lowerName.indexOf(lowerSearch) >= 0;
+    });
+  }
+
+  /*
+    BLACKBERRY
+
+    bla
+  */
 
 }

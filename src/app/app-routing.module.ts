@@ -1,3 +1,6 @@
+import { ProductWrapperComponent } from './product-wrapper/product-wrapper.component';
+import { ProductEditComponent } from './product-edit/product-edit.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { ProductOverviewComponent } from './product-overview/product-overview.component';
 import { StartComponent } from './start/start.component';
 import { NgModule } from '@angular/core';
@@ -11,7 +14,25 @@ const appRoutes: Routes = [
   },
   {
     path: 'products',
-    component: ProductOverviewComponent,
+    component: ProductWrapperComponent,
+    children: [
+      {
+        path: '',
+        component: ProductOverviewComponent
+      },
+      {
+        path: ':id/detail',
+        component: ProductDetailComponent
+      },
+      {
+        path: ':id/edit',
+        component: ProductEditComponent
+      },
+      {
+        path: 'create',
+        component: ProductEditComponent
+      },
+    ]
   },
   {
     path: '404',
