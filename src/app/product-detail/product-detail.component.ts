@@ -1,6 +1,8 @@
+import { ProductRestService } from './../product-rest/product-rest.service';
 import { ProductService } from './../product/product.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-product-detail',
@@ -14,6 +16,7 @@ export class ProductDetailComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private productService: ProductService,
+    private productRestService: ProductRestService,
     private router: Router,
   ) { }
 
@@ -21,8 +24,14 @@ export class ProductDetailComponent implements OnInit {
     const id = this.activatedRoute.snapshot.params['id'];
     console.log('id', id);
 
-    this.currentProduct = this.productService.getById( parseInt(id, 10) );
-    console.log('this.currentProduct', this.currentProduct);
+    this.productRestService.getById(id).subscribe(
+      (data) => {
+        this.currentProduct = data;
+      },
+      (error) => {
+        console.error('error', error);
+      }
+    );
   }
 
   public backToOverview() {

@@ -11,6 +11,7 @@ import { NavComponent } from './nav/nav.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { ProductEditComponent } from './product-edit/product-edit.component';
 import { ProductWrapperComponent } from './product-wrapper/product-wrapper.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { ProductWrapperComponent } from './product-wrapper/product-wrapper.compo
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

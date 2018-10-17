@@ -1,5 +1,7 @@
+import { Product, IProduct } from './../product';
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../product/product.service';
+import { ProductRestService } from '../product-rest/product-rest.service';
 
 @Component({
   selector: 'app-product-overview',
@@ -8,15 +10,25 @@ import { ProductService } from '../product/product.service';
 })
 export class ProductOverviewComponent implements OnInit {
 
-  public products: any[] = [];
+  public products: Product[] = [];
   public searchValue: string = '';
 
   constructor(
     private productService: ProductService,
+    private productRestService: ProductRestService,
   ) { }
 
   ngOnInit() {
-    this.products = this.productService.getAll();
+    // this.products = this.productService.getAll();
+    this.productRestService.getAll().subscribe(
+      (data: Product[]) => {
+        console.log('data', data);
+        this.products = data;
+      },
+      (error) => {
+        console.error('error', error);
+      },
+    );
   }
 
   getFilteredProducts() {
