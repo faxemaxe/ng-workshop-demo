@@ -31,12 +31,17 @@ export class ProductOverviewComponent implements OnInit {
     );
   }
 
-  getFilteredProducts() {
+  public getFilteredProducts() {
     return this.products.filter((product) => {
       const lowerSearch = this.searchValue.toLowerCase();
       const lowerName = product.name.toLowerCase();
       return lowerName.indexOf(lowerSearch) >= 0;
     });
+  }
+
+  public changed(input) {
+    console.log('PO: ', input);
+    this.searchValue = input;
   }
 
   /*

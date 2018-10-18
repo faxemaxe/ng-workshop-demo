@@ -1,6 +1,6 @@
 import { Product } from './../product';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
@@ -16,7 +16,17 @@ export class ProductRestService {
   ) { }
 
   public getAll() {
-    return this.httpClient.get(`${this.baseUrl}/products`);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authentication': 'Holladiewaldfeeistdassicher.'
+    });
+
+    const params = new HttpParams()
+                            .set('serach', 'blac');
+
+    return this.httpClient.get(`${this.baseUrl}/products`, {
+      headers: headers,
+    });
   }
 
   public getById(id: string) {

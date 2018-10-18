@@ -1,3 +1,66 @@
-<p>
-  product-edit works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col">
+
+
+      <form #form="ngForm" (ngSubmit)="submitForm(form.value)" novalidate>
+
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            name="name"
+            maxlength="10"
+            required
+            #formName="ngModel"
+            [(ngModel)]="currentProduct.name">
+            <div class="alert alert-warning mt-2" *ngIf="formName.touched && formName.invalid">
+              Der Name ist erforderlich.
+            </div>
+        </div>
+
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            name="price"
+            pattern="\d{2,6}"
+            #formPrice="ngModel"
+            [(ngModel)]="currentProduct.price">
+            <div class="alert alert-warning mt-2" *ngIf="formPrice.invalid">
+              Nummer muss zwischen 2 und 6 Zeichen sein.
+            </div>
+        </div>
+
+        <fieldset ngModelGroup="currentProduct.stock">
+            <div class="form-group">
+              <input
+                type="number"
+                class="form-control"
+                name="amount"
+                required
+                max="100"
+                [(ngModel)]="currentProduct.stock.amount">
+            </div>
+
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                name="unit"
+                maxlength="5"
+                required
+                [(ngModel)]="currentProduct.stock.unit">
+            </div>
+        </fieldset>
+
+        <input class="form-control" [disabled]="form.invalid" class="btn btn-primary" type="submit" value="Senden">
+
+      </form>
+
+      <pre>
+        {{ form.invalid | json }}
+      </pre>
+    </div>
+  </div>
+</div>

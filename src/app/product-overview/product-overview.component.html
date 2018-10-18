@@ -6,6 +6,9 @@
 
       <input type="text" [(ngModel)]="searchValue" class="form-control" placeholder="Suche">
 
+      <p>TypeAhead</p>
+      <app-typeahead (valueChanged)="changed($event)"></app-typeahead>
+
       <table class="table">
         <tbody>
           <tr *ngFor="let product of getFilteredProducts()">
@@ -16,6 +19,13 @@
                 class="btn btn-outline-primary"
                 [routerLink]="['/products', product.id, 'detail']">
                 öffnen
+              </button>
+            </td>
+            <td>
+              <button
+                class="btn btn-outline-primary"
+                [routerLink]="['/products', product.id, 'edit']">
+                bearbeiten
               </button>
             </td>
           </tr>

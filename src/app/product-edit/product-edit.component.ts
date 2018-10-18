@@ -1,5 +1,6 @@
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { Product } from '../product';
 
 @Component({
   selector: 'app-product-edit',
@@ -9,6 +10,17 @@ import { Component, OnInit } from '@angular/core';
 export class ProductEditComponent implements OnInit {
 
   public isEdit: boolean = true;
+
+  public product = new Product();
+
+  public currentProduct = {
+    name: null,
+    price: null,
+    stock: {
+      amount: null,
+      unit: null
+    }
+  };
 
   constructor(
     private activedRoute: ActivatedRoute,
@@ -20,6 +32,10 @@ export class ProductEditComponent implements OnInit {
     this.isEdit = !!id;
 
     console.log('id', id);
+  }
+
+  public submitForm(value) {
+    console.log('value', value);
   }
 
 }

@@ -1,3 +1,5 @@
+import { ProductEditReactiveComponent } from './product-edit-reactive/product-edit-reactive.component';
+import { SandboxComponent } from './sandbox/sandbox.component';
 import { ProductWrapperComponent } from './product-wrapper/product-wrapper.component';
 import { ProductEditComponent } from './product-edit/product-edit.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
@@ -8,6 +10,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const appRoutes: Routes = [
+  {
+    path: 'sandbox',
+    component: SandboxComponent,
+  },
   {
     path: 'start',
     component: StartComponent,
@@ -26,7 +32,7 @@ const appRoutes: Routes = [
       },
       {
         path: ':id/edit',
-        component: ProductEditComponent
+        component: ProductEditReactiveComponent
       },
       {
         path: 'create',
